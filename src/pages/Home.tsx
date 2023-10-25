@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+
+// import { getArticleList } from '../api/article';
+import MainLayout from '../components/common/mainLayout/MainLayout';
+import Filter from '../components/main/filter/Filter';
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  const { data } = useQuery<any, any, any, string[]>({
+    queryKey: ['article'],
+    // queryFn: getArticleList,
+  });
 
-export default Home
+  console.log(data);
+
+  return (
+    <MainLayout>
+      <Filter></Filter>
+    </MainLayout>
+  );
+};
+
+export default Home;
