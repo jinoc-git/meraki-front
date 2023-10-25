@@ -6,7 +6,7 @@ export const FilterContainer = styled.header`
   }
 
   position: fixed;
-  top: 44px;
+  top: 0px;
   left: 0;
   width: 560px;
   height: 60px;
