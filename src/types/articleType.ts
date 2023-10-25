@@ -52,7 +52,7 @@ export interface Multimedia {
   url: string;
 }
 
-export interface Article {
+export interface ArticleType {
   abstract: string;
   byline: Byline;
   document_type: string;

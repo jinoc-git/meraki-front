@@ -1,8 +1,9 @@
 import api from './api';
+import { type ArticleType } from '../types/articleType';
 
 const KEY = `api-key=${process.env.REACT_APP_NYT_API_KEY as string}`;
 
-export const getArticleList = async () => {
+export const getArticleList = async (): Promise<ArticleType> => {
   const {
     data: {
       response: { docs },
