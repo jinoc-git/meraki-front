@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+export const GNBContainer = styled.div`
   @media screen and (max-width: 560px) {
     width: 100vw;
     height: 44px;
@@ -15,6 +15,7 @@ export const HeaderContainer = styled.header`
   width: 560px;
   height: 44px;
   padding: 0 15px 0 30px;
+  background-color: #FFF;
 `
 
 export const TimeParagraph = styled.p`
