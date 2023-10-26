@@ -30,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'AppleSDGothicNeoReguler', 'AppleSDGothicNeoSemiBold', 'SFProTextSemiBold';
+    letter-spacing: -0.05em;
   }
   button {
     cursor: pointer;

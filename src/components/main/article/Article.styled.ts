@@ -24,7 +24,6 @@ export const ArticleHeadline = styled.h4`
   font-family: 'AppleSDGothicNeoSemiBold';
   font-size: 18px;
   line-height: 28px;
-  letter-spacing: -0.05em;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -44,7 +43,6 @@ export const InfoInnerWrapper = styled.div`
   display: flex;
   gap: 8px;
   width: 70%;
-  letter-spacing: -0.05em;
 `
 
 export const Source = styled.p`

@@ -14,7 +14,7 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
   const { type, useTo, withIcon, onClick, isActive, children } = props;
   return (
-    <S.Button type={type} onClick={onClick} useTo={useTo} isActive={isActive}>
+    <S.Button type={type} onClick={onClick} $useTo={useTo} isActive={isActive}>
       {withIcon}
       {children}
     </S.Button>
