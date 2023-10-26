@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
 
 interface ButtonStyleProps {
-  useTo: 'normal' | 'filter' | 'select';
+  $useTo: 'normal' | 'filter' | 'select';
   isActive?: boolean;
 }
 
 export const Button = styled.button<ButtonStyleProps>`
   ${(props) => {
     const { isActive } = props;
-    switch (props.useTo) {
+    switch (props.$useTo) {
       case 'normal':
         return css`
           width: 100%;

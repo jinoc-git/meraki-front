@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+`
+
 export const LoadingSpinner = styled.div`
   width: 24px;
   padding: 4px;
