@@ -11,14 +11,14 @@ export interface Person {
 
 export interface Byline {
   organization: null | string;
-  original: null | string;
+  original: string;
   person: Person[];
 }
 
 export interface Headline {
   content_kicker: null | string;
   kicker: null | string;
-  main: null | string;
+  main: string;
   name: null | string;
   print_headline: null | string;
   seo: null | string;

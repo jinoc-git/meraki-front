@@ -6,5 +6,5 @@ export const ArticleListContainer = styled.section`
   gap: 10px;
   width: 100%;
   margin-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 75px;
 `;

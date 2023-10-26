@@ -1,24 +1,32 @@
 import React from 'react';
 
 import * as S from './Article.styled';
+import { changeFormatDate } from '../../../utils/changeFormatDate';
 import Star from '../star/Star';
 
-const Article = () => {
+interface ArticleProps {
+  headline: string;
+  source: string;
+  by: string;
+  pubDate: string;
+  url: string;
+  _id: string;
+}
+
+const Article = (props: ArticleProps) => {
+  const { headline, source, by, pubDate } = props;
   return (
     <S.ArticleContainer>
       <S.ArticleHeader>
-        <S.ArticleHeadline>
-          백신 안 맞아도 해외여행 간다 격리도 없이 갈 수 있는 나라는 어디가
-          있을까?
-        </S.ArticleHeadline>
+        <S.ArticleHeadline>{headline}</S.ArticleHeadline>
         <Star />
       </S.ArticleHeader>
       <S.ArticleInfo>
         <S.InfoInnerWrapper>
-          <S.Source>한겨례 신문</S.Source>
-          <S.Reporter>박정확 기자</S.Reporter>
+          <S.Source>{source}</S.Source>
+          <S.Reporter>{by}</S.Reporter>
         </S.InfoInnerWrapper>
-        <S.PubDate>2023.10.26 (목)</S.PubDate>
+        <S.PubDate>{changeFormatDate(pubDate)}</S.PubDate>
       </S.ArticleInfo>
     </S.ArticleContainer>
   );

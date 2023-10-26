@@ -9,7 +9,7 @@ export const getArticleList = async (): Promise<ArticleType> => {
       response: { docs },
     },
   } = await api.get(
-    `/articlesearch.json?&q=${'seoul'}&page=${1}&sort=newest&fq=glocations:("${'South Korea'}")&${KEY}`,
+    `/articlesearch.json?&q=${''}&page=${1}&sort=newest&fq=glocations:("${'England'}")&${KEY}`,
   );
 
   return docs;
