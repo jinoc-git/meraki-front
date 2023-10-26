@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import uuid from 'react-uuid';
 
 import { useQuery } from '@tanstack/react-query';
@@ -6,11 +6,14 @@ import { type AxiosError } from 'axios';
 
 import * as S from './ArticleList.styled';
 import { getArticleList } from '../../../api/article';
+import { scrapStore } from '../../../store/scrapStore';
 import { type ArticleType } from '../../../types/articleType';
 import Loading from '../../common/loading/Loading';
 import Article from '../article/Article';
 
 const ArticleList = () => {
+  const { checkScrap, toggleScrap, setScrap } = scrapStore((state) => state);
+
   const { data, isLoading } = useQuery<
     any,
     AxiosError,
@@ -21,30 +24,30 @@ const ArticleList = () => {
     queryFn: getArticleList,
   });
 
+  useEffect(() => {
+    setScrap();
+  }, []);
+
   if (isLoading) return <Loading />;
+
+  const onClickArticle = (url: string) => {
+    window.location.href = url;
+  };
 
   console.log(data);
 
   return (
     <S.ArticleListContainer>
       {data?.map((article) => {
-        const {
-          headline: { main: headline },
-          source,
-          byline: { original: by },
-          pub_date: pubDate,
-          web_url: url,
-          _id,
-        } = article;
+        const isScrap = checkScrap(article._id);
+
         return (
           <Article
             key={uuid()}
-            headline={headline}
-            source={source}
-            by={by}
-            pubDate={pubDate}
-            url={url}
-            _id={_id}
+            article={article}
+            isScrap={isScrap}
+            toggleScrap={toggleScrap}
+            onClickArticle={onClickArticle}
           />
         );
       })}

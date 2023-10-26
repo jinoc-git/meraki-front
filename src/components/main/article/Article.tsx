@@ -1,25 +1,36 @@
 import React from 'react';
 
 import * as S from './Article.styled';
+import { type ArticleType } from '../../../types/articleType';
 import { changeFormatDate } from '../../../utils/changeFormatDate';
 import Star from '../star/Star';
 
 interface ArticleProps {
-  headline: string;
-  source: string;
-  by: string;
-  pubDate: string;
-  url: string;
-  _id: string;
+  article: ArticleType;
+  isScrap: boolean;
+  toggleScrap: (article: ArticleType) => (isScrap: boolean) => void;
+  onClickArticle: (url: string) => void;
 }
 
 const Article = (props: ArticleProps) => {
-  const { headline, source, by, pubDate } = props;
+  const { article, isScrap, toggleScrap, onClickArticle } = props;
+  const {
+    headline: { main: headline },
+    source,
+    byline: { original: by },
+    pub_date: pubDate,
+    web_url: url,
+  } = article;
+
   return (
-    <S.ArticleContainer>
+    <S.ArticleContainer
+      onClick={() => {
+        onClickArticle(url);
+      }}
+    >
       <S.ArticleHeader>
         <S.ArticleHeadline>{headline}</S.ArticleHeadline>
-        <Star />
+        <Star article={article} isScrap={isScrap} toggleScrap={toggleScrap} />
       </S.ArticleHeader>
       <S.ArticleInfo>
         <S.InfoInnerWrapper>
