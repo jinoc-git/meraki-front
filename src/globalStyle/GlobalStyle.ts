@@ -31,6 +31,11 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'AppleSDGothicNeoReguler', 'AppleSDGothicNeoSemiBold', 'SFProTextSemiBold';
   }
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
   .hidden {
     position: fixed;
     clip: rect(0 0 0 0);

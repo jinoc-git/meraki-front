@@ -8,6 +8,7 @@ export const MainLayoutContainer = styled.main`
   width: 560px;
   height: 100vh;
   padding: 60px 20px 20px;
+  margin: 0 auto;
   background-color: #f0f1f4;
   overflow-y: scroll;
 
