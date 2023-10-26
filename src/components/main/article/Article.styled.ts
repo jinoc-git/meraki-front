@@ -24,6 +24,7 @@ export const ArticleHeadline = styled.h4`
   font-family: 'AppleSDGothicNeoSemiBold';
   font-size: 18px;
   line-height: 28px;
+  letter-spacing: -0.05em;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -42,11 +43,23 @@ export const ArticleInfo = styled.div`
 export const InfoInnerWrapper = styled.div`
   display: flex;
   gap: 8px;
+  width: 70%;
+  letter-spacing: -0.05em;
 `
 
-export const Source = styled.p``;
+export const Source = styled.p`
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
-export const Reporter = styled.p``;
+export const Reporter = styled.p`
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
 export const PubDate = styled.p`
   color: #6d6d6d;
