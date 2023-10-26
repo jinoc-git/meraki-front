@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const ArticleContainer = styled.article`
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 104px;
   padding: 10px 20px;
@@ -8,23 +12,37 @@ export const ArticleContainer = styled.article`
   background-color: #fff;
 `;
 
-export const ArticleHeader = styled.div``;
+export const ArticleHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const ArticleHeadline = styled.h4`
-  width: 100%;
+  display: -webkit-box;
+  width: 90%;
+  height: 56px;
   font-family: 'AppleSDGothicNeoSemiBold';
   font-size: 18px;
   line-height: 28px;
-  letter-spacing: -5%;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient:vertical;
 `;
 
 export const ArticleInfo = styled.div`
   display: flex;
+  justify-content: space-between;
   font-family: 'AppleSDGothicNeoReguler';
   font-size: 13px;
   line-height: 20px;
-  letter-spacing: -5%;
 `;
+
+export const InfoInnerWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`
 
 export const Source = styled.p``;
 
