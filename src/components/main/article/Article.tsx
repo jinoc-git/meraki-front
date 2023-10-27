@@ -3,17 +3,17 @@ import React from 'react';
 import * as S from './Article.styled';
 import { type ArticleType } from '../../../types/articleType';
 import { changeFormatDate } from '../../../utils/changeFormatDate';
+import { onClickArticle } from '../../../utils/onClickArticle';
 import Star from '../star/Star';
 
 interface ArticleProps {
   article: ArticleType;
   isScrap: boolean;
   toggleScrap: (article: ArticleType) => (isScrap: boolean) => void;
-  onClickArticle: (url: string) => void;
 }
 
 const Article = (props: ArticleProps) => {
-  const { article, isScrap, toggleScrap, onClickArticle } = props;
+  const { article, isScrap, toggleScrap } = props;
   const {
     headline: { main: headline },
     source,
@@ -43,4 +43,4 @@ const Article = (props: ArticleProps) => {
   );
 };
 
-export default Article;
+export default React.memo(Article);

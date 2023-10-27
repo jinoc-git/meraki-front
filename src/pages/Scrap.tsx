@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+
+import MainLayout from '../components/common/mainLayout/MainLayout';
+import Filter from '../components/main/filter/Filter';
+import ScrapList from '../components/main/scrapList/ScrapList';
 
 const Scrap = () => {
   return (
-    <div>Scrap</div>
-  )
-}
+    <>
+      <Filter></Filter>
+      <MainLayout>
+        <ScrapList />
+      </MainLayout>
+    </>
+  );
+};
 
-export default Scrap
+export default Scrap;

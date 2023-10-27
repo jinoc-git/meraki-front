@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <Filter></Filter>
       <MainLayout>
-        <ArticleList></ArticleList>
+        <ArticleList />
       </MainLayout>
     </>
   );

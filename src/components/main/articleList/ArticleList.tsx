@@ -30,10 +30,6 @@ const ArticleList = () => {
 
   if (isLoading) return <Loading />;
 
-  const onClickArticle = (url: string) => {
-    window.location.href = url;
-  };
-
   console.log(data);
 
   return (
@@ -47,7 +43,6 @@ const ArticleList = () => {
             article={article}
             isScrap={isScrap}
             toggleScrap={toggleScrap}
-            onClickArticle={onClickArticle}
           />
         );
       })}
