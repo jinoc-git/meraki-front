@@ -13,6 +13,7 @@ export const NavContainer = styled.nav`
     transform: translate(0, 0);
   }
 
+  z-index: 9999;
   position: fixed;
   bottom: 0;
   left: 50%;

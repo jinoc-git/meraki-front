@@ -1,28 +1,16 @@
 import React, { useEffect } from 'react';
 import uuid from 'react-uuid';
 
-import { useQuery } from '@tanstack/react-query';
-import { type AxiosError } from 'axios';
-
 import * as S from './ArticleList.styled';
-import { getArticleList } from '../../../api/article';
+import useInfiniteGetArticle from '../../../hooks/useInfiniteGetArticle';
 import { scrapStore } from '../../../store/scrapStore';
-import { type ArticleType } from '../../../types/articleType';
 import Loading from '../../common/loading/Loading';
 import Article from '../article/Article';
 
 const ArticleList = () => {
   const { checkScrap, toggleScrap, setScrap } = scrapStore((state) => state);
 
-  const { data, isLoading } = useQuery<
-    any,
-    AxiosError,
-    ArticleType[],
-    string[]
-  >({
-    queryKey: ['article'],
-    queryFn: getArticleList,
-  });
+  const { data, ref, isLoading, isFetchingNextPage } = useInfiniteGetArticle();
 
   useEffect(() => {
     setScrap();
@@ -46,7 +34,7 @@ const ArticleList = () => {
           />
         );
       })}
-      <div />
+      <S.ObseverBox ref={ref}>{isFetchingNextPage === true && <Loading />}</S.ObseverBox>
     </S.ArticleListContainer>
   );
 };
