@@ -8,3 +8,7 @@ export const ArticleListContainer = styled.section`
   margin-top: 20px;
   padding-bottom: 75px;
 `;
+
+export const ObseverBox = styled.div`
+  width: 100%;
+`
