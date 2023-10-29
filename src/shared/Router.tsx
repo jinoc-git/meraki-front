@@ -8,13 +8,13 @@ import Scrap from '../pages/Scrap';
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/scrap" element={<Scrap />} />
         </Routes>
       </Suspense>
+      <Nav />
     </BrowserRouter>
   );
 };

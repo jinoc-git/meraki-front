@@ -17,7 +17,7 @@ export const ArticleHeader = styled.div`
   justify-content: space-between;
 `;
 
-export const ArticleHeadline = styled.h4`
+export const ArticleHeadline = styled.h3`
   display: -webkit-box;
   width: 90%;
   height: 56px;
@@ -28,7 +28,7 @@ export const ArticleHeadline = styled.h4`
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
-  -webkit-box-orient:vertical;
+  -webkit-box-orient: vertical;
 `;
 
 export const ArticleInfo = styled.div`
@@ -43,7 +43,7 @@ export const InfoInnerWrapper = styled.div`
   display: flex;
   gap: 8px;
   width: 70%;
-`
+`;
 
 export const Source = styled.p`
   width: 40%;

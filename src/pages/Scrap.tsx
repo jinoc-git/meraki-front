@@ -1,7 +1,7 @@
 import React from 'react';
 
 import MainLayout from '../components/common/mainLayout/MainLayout';
-import Filter from '../components/main/filter/Filter';
+import Filter from '../components/header/filter/Filter';
 import ScrapList from '../components/main/scrapList/ScrapList';
 
 const Scrap = () => {
