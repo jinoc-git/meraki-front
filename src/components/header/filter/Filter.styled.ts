@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface FilterItemProps {
-  isActive: boolean;
+  $isActive: boolean;
 }
 
 export const FilterContainer = styled.header`
@@ -41,10 +41,10 @@ export const FilterItem = styled.li<FilterItemProps>`
   letter-spacing: -0.04em;
   border-radius: 30px;
 
-  ${({ isActive }) => {
+  ${({ $isActive }) => {
     return css`
-      color: ${isActive ? '#3478F6' : '#6D6D6D'};
-      border: 1px solid ${isActive ? '#82B0F4' : '#C4C4C4'};
+      color: ${$isActive ? '#3478F6' : '#6D6D6D'};
+      border: 1px solid ${$isActive ? '#82B0F4' : '#C4C4C4'};
     `;
   }}
 
