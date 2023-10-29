@@ -22,6 +22,7 @@ const ArticleList = () => {
 
   return (
     <S.ArticleListContainer>
+      <h2>기사 리스트</h2>
       {data?.map((article) => {
         const isScrap = checkScrap(article._id);
 
@@ -34,7 +35,9 @@ const ArticleList = () => {
           />
         );
       })}
-      <S.ObseverBox ref={ref}>{isFetchingNextPage === true && <Loading />}</S.ObseverBox>
+      <S.ObseverBox ref={ref}>
+        {isFetchingNextPage === true && <Loading />}
+      </S.ObseverBox>
     </S.ArticleListContainer>
   );
 };
