@@ -13,7 +13,7 @@ const NoScrapList = () => {
   };
   return (
     <S.NoScrapListContainer>
-      <h2>스크랩 리스트</h2>
+      <h2>스크랩 리스트가 없음</h2>
       <S.GuideBox>
         <IconNoScrap />
         <S.GuideComment>저장된 스크랩이 없습니다.</S.GuideComment>
