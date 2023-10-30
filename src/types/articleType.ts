@@ -63,7 +63,7 @@ export interface ArticleType {
   news_desk: string;
   print_page: string;
   print_section: string;
-  pub_date: string;
+  pub_date: Date;
   section_name: string;
   snippet: string;
   source: string;

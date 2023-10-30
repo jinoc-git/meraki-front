@@ -34,8 +34,8 @@ const Article = (props: ArticleProps) => {
       </S.ArticleHeader>
       <S.ArticleInfo>
         <S.InfoInnerWrapper>
-          <S.Source>{source}</S.Source>
-          <S.Reporter>{by}</S.Reporter>
+          <S.Source>{source ?? '정보가 없습니다'}</S.Source>
+          <S.Reporter>{by ?? '정보가 없습니다'}</S.Reporter>
         </S.InfoInnerWrapper>
         <S.PubDate>{changeFormatDate(pubDate)}</S.PubDate>
       </S.ArticleInfo>

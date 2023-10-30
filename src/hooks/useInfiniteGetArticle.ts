@@ -8,7 +8,17 @@ import { filterStore, type PageList } from '../store/filterStore';
 import { type ArticleType } from '../types/articleType';
 import { changeToQuery } from '../utils/changeToQuery';
 
-const useInfiniteGetArticle = (currentPage: PageList) => {
+interface UseInfiniteGetArticleReturn {
+  data: ArticleType[] | undefined;
+  ref: (node?: Element | null | undefined) => void;
+  isLoading: boolean;
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
+}
+
+const useInfiniteGetArticle = (
+  currentPage: PageList,
+): UseInfiniteGetArticleReturn => {
   const { headline, date, countryList } = filterStore(
     (state) => state.page[currentPage],
   );
@@ -19,41 +29,35 @@ const useInfiniteGetArticle = (currentPage: PageList) => {
     countryList,
   });
 
-  const {
-    data,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage,
-    refetch,
-  } = useInfiniteQuery<
-    ArticleType[],
-    AxiosError,
-    InfiniteData<ArticleType[]>,
-    string[],
-    number
-  >({
-    queryKey: ['infiniteArticle', headline, dateQuery, countryQuery],
-    queryFn: async ({ pageParam = 1 }) => {
-      const res = await getArticleList({
-        headline: headlineQuery,
-        date: dateQuery,
-        country: countryQuery,
-        pageParam,
-      });
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery<
+      ArticleType[],
+      AxiosError,
+      InfiniteData<ArticleType[]>,
+      string[],
+      number
+    >({
+      queryKey: ['infiniteArticle', headline, dateQuery, countryQuery],
+      queryFn: async ({ pageParam = 1 }) => {
+        const res = await getArticleList({
+          headline: headlineQuery,
+          date: dateQuery,
+          country: countryQuery,
+          pageParam,
+        });
 
-      return res;
-    },
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      if (lastPage !== undefined && lastPage.length > 0) {
-        return lastPageParam + 1;
-      }
-      return undefined;
-    },
-    initialPageParam: 1,
-    refetchOnWindowFocus: false,
-    staleTime: 10 * 1000,
-  });
+        return res;
+      },
+      getNextPageParam: (lastPage, allPages, lastPageParam) => {
+        if (lastPage !== undefined && lastPage.length > 0) {
+          return lastPageParam + 1;
+        }
+        return undefined;
+      },
+      initialPageParam: 1,
+      refetchOnWindowFocus: false,
+      staleTime: 10 * 1000,
+    });
 
   const { ref } = useInView({
     threshold: 0.2,
@@ -64,11 +68,7 @@ const useInfiniteGetArticle = (currentPage: PageList) => {
     },
   });
 
-  if (data === undefined) {
-    return { data: [], ref, isLoading };
-  }
-
-  const result = data.pages.flat();
+  const result = data?.pages.flat();
 
   return {
     data: result,
@@ -76,7 +76,6 @@ const useInfiniteGetArticle = (currentPage: PageList) => {
     isLoading,
     hasNextPage,
     isFetchingNextPage,
-    refetch,
   };
 };
 

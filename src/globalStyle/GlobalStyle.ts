@@ -79,7 +79,12 @@ const GlobalStyles = createGlobalStyle`
       padding: 0 !important;
     }
   }
-  
+  .toast-message {
+    display: flex;
+    align-items: center;
+    font-family: 'AppleSDGothicNeoReguler';
+    font-size: 14px;
+  }
 `;
 
 export default GlobalStyles;

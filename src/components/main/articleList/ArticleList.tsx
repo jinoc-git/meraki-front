@@ -10,7 +10,7 @@ import Modal from '../../header/modal/Modal';
 import Article from '../article/Article';
 
 const ArticleList = () => {
-  const { isOpen } = modalStore();
+  const isOpen = modalStore((state) => state.isOpen);
 
   const { checkScrap, toggleScrap, setScrap } = scrapStore((state) => state);
 
@@ -22,8 +22,6 @@ const ArticleList = () => {
   }, []);
 
   if (isLoading) return <Loading />;
-
-  console.log(data);
 
   return (
     <S.ArticleListContainer>

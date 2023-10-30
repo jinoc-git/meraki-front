@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import { create } from 'zustand';
 
 import { type ArticleType } from '../types/articleType';
@@ -17,6 +19,7 @@ export const scrapStore = create<ScrapStore>((set, get) => ({
     const originScrapList = get().scrapArticleList;
     originScrapList.push(article);
     localStorage.setItem('scrap', JSON.stringify(originScrapList));
+    toast.success('기사를 스크랩했습니다.');
     get().setScrap();
   },
   removeScrap: (id: string) => {
@@ -25,6 +28,7 @@ export const scrapStore = create<ScrapStore>((set, get) => ({
       (article) => article._id !== id,
     );
     localStorage.setItem('scrap', JSON.stringify(newScrapList));
+    toast.success('스크랩을 취소했습니다.');
     get().setScrap();
   },
   checkScrap: (id: string) => {
