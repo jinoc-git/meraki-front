@@ -1,16 +1,18 @@
 import React from 'react';
-import { Bounce, ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 
 import Router from './shared/Router';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <>
       <Router />
       <ToastContainer
-        bodyClassName={() => 'text-sm font-white p-3 flex items-center'}
+        bodyClassName={() => 'toast-message'}
         position="top-center"
-        autoClose={1500}
+        autoClose={850}
         hideProgressBar
         newestOnTop={false}
         closeOnClick
@@ -19,7 +21,8 @@ function App() {
         draggable
         pauseOnHover={false}
         theme="light"
-        transition={Bounce}
+        transition={Slide}
+        limit={1}
       />
     </>
   );

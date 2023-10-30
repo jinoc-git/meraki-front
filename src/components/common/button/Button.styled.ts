@@ -16,6 +16,7 @@ export const Button = styled.button<ButtonStyleProps>`
           border-radius: 16px;
           color: #fff;
           font-family: 'AppleSDGothicNeoSemiBold';
+          font-size: 16px;
           background-color: #3478f6;
 
           &:active {

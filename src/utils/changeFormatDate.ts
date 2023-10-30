@@ -5,12 +5,12 @@ const getKoreanDayOfWeek = (date: Date) => {
   return daysInKorean[dayOfWeek];
 };
 
-export const changeFormatDate = (date: string) => {
+export const changeFormatDate = (date: Date) => {
   const dates = new Date(date);
   const year = dates.getFullYear();
   const month = dates.getMonth() + 1;
   const day = dates.getDate();
   const koreanDayOfWeek = getKoreanDayOfWeek(dates);
-  
+
   return `${year}.${month}.${day} (${koreanDayOfWeek})`;
 };
