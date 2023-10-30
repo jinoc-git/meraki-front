@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'react-uuid';
 
 import * as S from './SelectCountrt.styled';
-import { countryList } from '../../../../constant/countryList';
+import { COUNTRY_LIST } from '../../../../constant/countryList';
 import Button from '../../../common/button/Button';
 import ModalField from '../modalField/ModalField';
 
@@ -17,9 +17,9 @@ const SelectCountry = (props: SelectCountryProps) => {
   return (
     <ModalField title="국가">
       <S.CountryWrapper>
-        {countryList.map(({ country, value }) => {
+        {COUNTRY_LIST.map(({ country }) => {
           const isActive = Boolean(
-            selectedCountry.find((country) => country === value),
+            selectedCountry.find((countryName) => countryName === country),
           );
           return (
             <Button
@@ -27,7 +27,7 @@ const SelectCountry = (props: SelectCountryProps) => {
               type="button"
               useTo="select"
               isActive={isActive}
-              onClick={onClickCountry(value)}
+              onClick={onClickCountry(country)}
             >
               {country}
             </Button>

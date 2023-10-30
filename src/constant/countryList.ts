@@ -1,4 +1,4 @@
-export const countryList = [
+export const COUNTRY_LIST = [
   { country: '대한민국', value: 'South Korea' },
   { country: '중국', value: 'China' },
   { country: '일본', value: 'Japan' },

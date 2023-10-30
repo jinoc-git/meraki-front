@@ -1,20 +1,27 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unused-imports/no-unused-vars */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
 
 import * as S from './Modal.styled';
 import SearchHeadline from './searchHeadline/SearchHeadline';
 import SelectCountry from './selectCountry/SelectCountry';
 import SelectDate from './selectDate/SelectDate';
+import { filterStore } from '../../../store/filterStore';
 import { modalStore } from '../../../store/modalStore';
 import Button from '../../common/button/Button';
 
 const Modal = () => {
+  const { pathname } = useLocation();
+  const currentPage = pathname === '/' ? 'home' : 'scrap';
+
   const closeModal = modalStore((state) => state.closeModal);
+  const { page, setFilterValues } = filterStore();
+
   const [searchValue, setSearchValue] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<string[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<string[]>(
+    page[currentPage].countryList,
+  );
 
   const modalRef = useRef<HTMLFormElement | null>(null);
 
@@ -40,23 +47,30 @@ const Modal = () => {
         );
         setSelectedCountry(newSelectedCountry);
       } else {
-        setSelectedCountry((prev) => [...prev, value]);
+        setSelectedCountry([...selectedCountry, value]);
       }
     },
     [selectedCountry],
   );
 
-  const onClickModalOutside = (e: MouseEvent) => {
+  const onClickModalOutside = useCallback((e: MouseEvent) => {
     const isOutside =
       modalRef.current !== null &&
       !modalRef.current.contains(e.target as HTMLElement);
     if (isOutside) closeModal();
-  };
+  }, []);
 
   const onClickSubmitBtn = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
+
+    const filterValues = {
+      headline: searchValue,
+      date: selectedDate,
+      countryList: selectedCountry,
+    };
+    setFilterValues(currentPage)(filterValues);
     closeModal();
   };
 
@@ -92,4 +106,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default React.memo(Modal);
