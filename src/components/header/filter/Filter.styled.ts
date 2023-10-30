@@ -26,6 +26,14 @@ export const FilterContainer = styled.header`
 export const FilterListWrapper = styled.ul`
   display: flex;
   gap: 7px;
+  width: 100%;
+
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const FilterItem = styled.li<FilterItemProps>`
@@ -49,9 +57,16 @@ export const FilterItem = styled.li<FilterItemProps>`
   }}
 
   & > p {
-    max-width: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+`;
+
+export const FilterHeadline = styled.p`
+  max-width: 73px;
+`;
+
+export const FilterDate = styled.p`
+  max-width: 63px;
 `;

@@ -1,21 +1,19 @@
-import { format } from 'date-fns';
 import { create } from 'zustand';
 
-interface FilterList {
+export interface FilterList {
   headline: string;
-  date: null | string;
-  countryList: [];
+  date: null | Date;
+  countryList: string[];
 }
 
-type PageList = 'home' | 'scrap';
+export type PageList = 'home' | 'scrap';
 
 interface FilterStore {
   page: {
     home: FilterList;
     scrap: FilterList;
   };
-  setHeadline: (page: PageList) => (value: string) => void;
-  setDate: (page: PageList) => (value: Date | null) => void;
+  setFilterValues: (page: PageList) => (values: FilterList) => void;
 }
 
 export const filterStore = create<FilterStore>((set, get) => ({
@@ -31,15 +29,14 @@ export const filterStore = create<FilterStore>((set, get) => ({
       countryList: [],
     },
   },
-  setHeadline: (page: PageList) => (value: string) => {
+  setFilterValues: (page: PageList) => (values: FilterList) => {
+    const { headline, date, countryList } = values;
     const currentData = get().page;
-    currentData[page].headline = value;
+
+    currentData[page].headline = headline;
+    currentData[page].date = date;
+    currentData[page].countryList = countryList;
+
     set({ page: currentData });
-  },
-  setDate: (page: PageList) => (value: Date | null) => {
-    const currentData = get().page;
-    const changedFormat = value !== null ? format(value, 'yyyyMMdd') : null;
-    console.log(changedFormat);
-    currentData[page].date = changedFormat;
   },
 }));

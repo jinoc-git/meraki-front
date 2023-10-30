@@ -3,14 +3,19 @@ import uuid from 'react-uuid';
 
 import * as S from './ArticleList.styled';
 import useInfiniteGetArticle from '../../../hooks/useInfiniteGetArticle';
+import { modalStore } from '../../../store/modalStore';
 import { scrapStore } from '../../../store/scrapStore';
 import Loading from '../../common/loading/Loading';
+import Modal from '../../header/modal/Modal';
 import Article from '../article/Article';
 
 const ArticleList = () => {
+  const { isOpen } = modalStore();
+
   const { checkScrap, toggleScrap, setScrap } = scrapStore((state) => state);
 
-  const { data, ref, isLoading, isFetchingNextPage } = useInfiniteGetArticle();
+  const { data, ref, isLoading, isFetchingNextPage } =
+    useInfiniteGetArticle('home');
 
   useEffect(() => {
     setScrap();
@@ -35,9 +40,8 @@ const ArticleList = () => {
           />
         );
       })}
-      <S.ObseverBox ref={ref}>
-        {isFetchingNextPage === true && <Loading />}
-      </S.ObseverBox>
+      <S.ObseverBox ref={ref}>{isFetchingNextPage && <Loading />}</S.ObseverBox>
+      {isOpen && <Modal />}
     </S.ArticleListContainer>
   );
 };
