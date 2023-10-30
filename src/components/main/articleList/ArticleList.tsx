@@ -8,6 +8,7 @@ import { scrapStore } from '../../../store/scrapStore';
 import Loading from '../../common/loading/Loading';
 import Modal from '../../header/modal/Modal';
 import Article from '../article/Article';
+import NoFilterResult from '../noFilterResult/NoFilterResult';
 
 const ArticleList = () => {
   const isOpen = modalStore((state) => state.isOpen);
@@ -24,23 +25,32 @@ const ArticleList = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <S.ArticleListContainer>
-      <h2>기사 리스트</h2>
-      {data?.map((article) => {
-        const isScrap = checkScrap(article._id);
+    <>
+      <S.ArticleListContainer>
+        <h2>기사 리스트</h2>
+        {data?.length === 0 ? (
+          <NoFilterResult />
+        ) : (
+          data?.map((article) => {
+            const isScrap = checkScrap(article._id);
 
-        return (
-          <Article
-            key={uuid()}
-            article={article}
-            isScrap={isScrap}
-            toggleScrap={toggleScrap}
-          />
-        );
-      })}
-      <S.ObseverBox ref={ref}>{isFetchingNextPage && <Loading />}</S.ObseverBox>
-      {isOpen && <Modal />}
-    </S.ArticleListContainer>
+            return (
+              <Article
+                key={uuid()}
+                article={article}
+                isScrap={isScrap}
+                toggleScrap={toggleScrap}
+              />
+            );
+          })
+        )}
+        {}
+        <S.ObseverBox ref={ref}>
+          {isFetchingNextPage && <Loading />}
+        </S.ObseverBox>
+        {isOpen && <Modal />}
+      </S.ArticleListContainer>
+    </>
   );
 };
 

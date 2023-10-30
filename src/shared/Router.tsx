@@ -1,9 +1,10 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Nav from '../components/nav/Nav';
-import Home from '../pages/Home';
-import Scrap from '../pages/Scrap';
+
+const Home = lazy(async () => await import('../pages/Home'));
+const Scrap = lazy(async () => await import('../pages/Scrap'));
 
 const Router = () => {
   return (
