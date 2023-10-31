@@ -11,4 +11,4 @@ export const ArticleListContainer = styled.section`
 
 export const ObseverBox = styled.div`
   width: 100%;
-`
+`;

@@ -17,19 +17,19 @@ const Filter = () => {
   const { openModal } = modalStore();
   const page = filterStore((state) => state.page);
 
-  const headlineIsActive = page[currentPage].headline !== '';
-  const dateIsActive = page[currentPage].date !== null;
-  const countryIsActive = page[currentPage].countryList.length !== 0;
+  const isFilteringHeadline = page[currentPage].headline !== '';
+  const isFilteringDate = page[currentPage].date !== null;
+  const isFilteringCountry = page[currentPage].countryList.length !== 0;
 
-  const currentHeadline = headlineIsActive
+  const currentHeadline = isFilteringHeadline
     ? page[currentPage].headline
     : '전체 헤드라인';
 
-  const currentDate = dateIsActive
+  const currentDate = isFilteringDate
     ? format(page[currentPage].date as Date, 'yyyy.M.dd')
     : '전체 날짜';
 
-  const currentCountryList = countryIsActive
+  const currentCountryList = isFilteringCountry
     ? changeFormatCountryList(page[currentPage].countryList)
     : '전체 국가';
 
@@ -37,15 +37,15 @@ const Filter = () => {
     <S.FilterContainer>
       <h1>뉴욕 타임즈</h1>
       <S.FilterListWrapper>
-        <S.FilterItem $isActive={headlineIsActive} onClick={openModal}>
-          <IconSearch color={headlineIsActive ? '#3478F6' : '#6D6D6D'} />
+        <S.FilterItem $isActive={isFilteringHeadline} onClick={openModal}>
+          <IconSearch color={isFilteringHeadline ? '#3478F6' : '#6D6D6D'} />
           <S.FilterHeadline>{currentHeadline}</S.FilterHeadline>
         </S.FilterItem>
-        <S.FilterItem $isActive={dateIsActive} onClick={openModal}>
-          <IconCalendar color={dateIsActive ? '#3478F6' : '#6D6D6D'} />
+        <S.FilterItem $isActive={isFilteringDate} onClick={openModal}>
+          <IconCalendar color={isFilteringDate ? '#3478F6' : '#6D6D6D'} />
           <S.FilterDate>{currentDate}</S.FilterDate>
         </S.FilterItem>
-        <S.FilterItem $isActive={countryIsActive} onClick={openModal}>
+        <S.FilterItem $isActive={isFilteringCountry} onClick={openModal}>
           <p>{currentCountryList}</p>
         </S.FilterItem>
       </S.FilterListWrapper>
@@ -53,4 +53,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default React.memo(Filter);
