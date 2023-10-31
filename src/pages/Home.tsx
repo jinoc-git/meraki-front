@@ -7,7 +7,7 @@ import ArticleList from '../components/main/articleList/ArticleList';
 const Home = () => {
   return (
     <>
-      <Filter></Filter>
+      <Filter />
       <MainLayout>
         <ArticleList />
       </MainLayout>

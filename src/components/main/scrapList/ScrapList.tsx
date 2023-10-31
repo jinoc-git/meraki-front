@@ -41,4 +41,4 @@ const ScrapList = () => {
   );
 };
 
-export default ScrapList;
+export default React.memo(ScrapList);

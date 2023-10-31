@@ -5,6 +5,7 @@ import * as S from './ArticleList.styled';
 import useInfiniteGetArticle from '../../../hooks/useInfiniteGetArticle';
 import { modalStore } from '../../../store/modalStore';
 import { scrapStore } from '../../../store/scrapStore';
+import ErrorComp from '../../common/errorComp/ErrorComp';
 import Loading from '../../common/loading/Loading';
 import Modal from '../../header/modal/Modal';
 import Article from '../article/Article';
@@ -23,6 +24,7 @@ const ArticleList = () => {
   }, []);
 
   if (isLoading) return <Loading />;
+  if (data === undefined) return <ErrorComp />;
 
   return (
     <>
@@ -54,4 +56,4 @@ const ArticleList = () => {
   );
 };
 
-export default ArticleList;
+export default React.memo(ArticleList);

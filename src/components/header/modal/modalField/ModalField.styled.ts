@@ -6,6 +6,7 @@ export const ModalFieldContainer = styled.fieldset`
 `;
 
 export const FieldTitle = styled.legend`
+  cursor: default;
   margin-bottom: 8px;
   font-size: 16px;
   line-height: 24px;

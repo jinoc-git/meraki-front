@@ -8,6 +8,7 @@ import SelectCountry from './selectCountry/SelectCountry';
 import SelectDate from './selectDate/SelectDate';
 import { filterStore } from '../../../store/filterStore';
 import { modalStore } from '../../../store/modalStore';
+import { disableScroll, enableScroll } from '../../../utils/scrollLock';
 import Button from '../../common/button/Button';
 
 const Modal = () => {
@@ -76,9 +77,12 @@ const Modal = () => {
 
   useEffect(() => {
     document.addEventListener('mousedown', onClickModalOutside);
+    const scrollPosY = window.scrollY;
+    disableScroll(scrollPosY);
 
     return () => {
       document.removeEventListener('mousedown', onClickModalOutside);
+      enableScroll(scrollPosY);
     };
   }, []);
 
