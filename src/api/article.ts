@@ -4,7 +4,7 @@ import { type SearchType } from '../types/searchType';
 
 const KEY = `api-key=${process.env.REACT_APP_NYT_API_KEY as string}`;
 
-export interface GetInfiniteArticleArgs extends SearchType {
+interface GetInfiniteArticleArgs extends SearchType {
   pageParam: number;
 }
 
