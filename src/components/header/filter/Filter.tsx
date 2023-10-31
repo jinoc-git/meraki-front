@@ -26,7 +26,7 @@ const Filter = () => {
     : '전체 헤드라인';
 
   const currentDate = isFilteringDate
-    ? format(page[currentPage].date as Date, 'yyyy.M.dd')
+    ? format(page[currentPage].date as Date, 'yyyy.MM.dd')
     : '전체 날짜';
 
   const currentCountryList = isFilteringCountry
