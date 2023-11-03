@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { type InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
@@ -14,6 +15,7 @@ interface UseInfiniteGetArticleReturn {
   isLoading: boolean;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
+  scrollPosY: number;
 }
 
 const useInfiniteGetArticle = (
@@ -22,6 +24,8 @@ const useInfiniteGetArticle = (
   const { headline, date, countryList } = filterStore(
     (state) => state.page[currentPage],
   );
+
+  const [scrollPosY, setScrollPosY] = useState(0);
 
   const { headlineQuery, dateQuery, countryQuery } = changeToQuery({
     headline,
@@ -54,6 +58,7 @@ const useInfiniteGetArticle = (
         }
         return undefined;
       },
+
       initialPageParam: 1,
       refetchOnWindowFocus: false,
       staleTime: 10 * 1000,
@@ -63,6 +68,7 @@ const useInfiniteGetArticle = (
     threshold: 0.2,
     onChange: (inView) => {
       if (inView && hasNextPage && !isFetchingNextPage) {
+        setScrollPosY(window.scrollY);
         void fetchNextPage();
       }
     },
@@ -76,6 +82,7 @@ const useInfiniteGetArticle = (
     isLoading,
     hasNextPage,
     isFetchingNextPage,
+    scrollPosY,
   };
 };
 
