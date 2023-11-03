@@ -13,15 +13,18 @@ import NoFilterResult from '../noFilterResult/NoFilterResult';
 
 const ArticleList = () => {
   const isOpen = modalStore((state) => state.isOpen);
-
   const { checkScrap, toggleScrap, setScrap } = scrapStore((state) => state);
 
-  const { data, ref, isLoading, isFetchingNextPage } =
+  const { data, ref, isLoading, isFetchingNextPage, scrollPosY } =
     useInfiniteGetArticle('home');
 
   useEffect(() => {
     setScrap();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, scrollPosY);
+  }, [data]);
 
   if (isLoading) return <Loading />;
   if (data === undefined) return <ErrorComp />;
